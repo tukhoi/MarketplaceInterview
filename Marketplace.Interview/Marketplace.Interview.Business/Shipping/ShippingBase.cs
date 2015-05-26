@@ -10,13 +10,11 @@ namespace Marketplace.Interview.Business.Shipping
     {
         public static IEnumerable<Type> KnownTypes()
         {
-            return new[] {typeof (FlatRateShipping), typeof (PerRegionShipping), typeof(CustomPerRegionShipping)};
+            return new[] {typeof (FlatRateShipping), typeof (PerRegionShipping)};
         }
         
         public abstract string GetDescription(LineItem lineItem, Basket.Basket basket);
 
         public abstract decimal GetAmount(LineItem lineItem, Basket.Basket basket);
-
-        public string Name { get; protected set; }
     }
 }
