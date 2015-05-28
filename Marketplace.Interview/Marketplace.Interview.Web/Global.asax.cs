@@ -5,6 +5,7 @@ using System.Web.Routing;
 using Marketplace.Interview.Business.Core;
 using Marketplace.Interview.Web;
 using Marketplace.Interview.Web.IoC;
+using Marketplace.Interview.Web.App_Start;
 
 namespace Marketplace.Interview.Web
 {
@@ -34,6 +35,12 @@ namespace Marketplace.Interview.Web
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+        }
+
+        public override void Init()
+        {
+            base.Init();
+            UnitOfWorkPerRequestConfigure.RegisterUnitOfWorkPerRequest(this);
         }
     }
 }
