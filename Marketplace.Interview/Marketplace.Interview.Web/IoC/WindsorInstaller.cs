@@ -4,6 +4,7 @@ using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using Marketplace.Interview.Business.Core;
+using Marketplace.Interview.Business.Core.UnitOfWork;
 
 namespace Marketplace.Interview.Web.IoC
 {
@@ -19,6 +20,8 @@ namespace Marketplace.Interview.Web.IoC
                                    .Configure(c => c.LifestyleTransient())
                                    .If(t => t.FindInterfaces((t1, o) => t1.Name == "IWorkflow", null).Length > 0)
                                    .BasedOn(typeof (IWorkflow<,>)).WithService.FromInterface(typeof(IWorkflow<,>)));
+
+            container.Register(Component.For<IUnitOfWork>().Instance(UnitOfWorkFactory.Create()).LifestyleSingleton());
         }
     }
 }

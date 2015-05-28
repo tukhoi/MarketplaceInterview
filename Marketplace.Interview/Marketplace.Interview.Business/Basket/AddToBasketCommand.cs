@@ -1,7 +1,10 @@
-﻿namespace Marketplace.Interview.Business.Basket
+﻿using Marketplace.Interview.Business.Core.UnitOfWork;
+namespace Marketplace.Interview.Business.Basket
 {
     public class AddToBasketCommand : BasketOperationBase, IAddToBasketCommand
     {
+        public AddToBasketCommand(IUnitOfWork unitOfWork) : base(unitOfWork) {}
+
         public AddToBasketResponse Invoke(AddToBasketRequest request)
         {
             var basket = GetBasket();

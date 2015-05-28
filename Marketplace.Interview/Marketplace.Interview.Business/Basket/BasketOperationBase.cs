@@ -2,12 +2,19 @@
 using System.Collections.Generic;
 using System.IO;
 using Marketplace.Interview.Business.Core;
+using Marketplace.Interview.Business.Core.UnitOfWork;
 
 namespace Marketplace.Interview.Business.Basket
 {
     public abstract class BasketOperationBase
     {
         private static readonly string file = Path.Combine(Environment.GetEnvironmentVariable("temp"), "basket.xml");
+        private readonly IUnitOfWork _unitOfWork;
+
+        protected BasketOperationBase(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
 
         protected Basket GetBasket()
         {
@@ -22,10 +29,11 @@ namespace Marketplace.Interview.Business.Basket
 
         protected void SaveBasket(Basket basket)
         {
-            using (var sw = new StreamWriter(file, false))
-            {
-                sw.Write(SerializationHelper.DataContractSerialize(basket));
-            }
+            _unitOfWork.RegisterDirty(basket);
+            //using (var sw = new StreamWriter(file, false))
+            //{
+            //    sw.Write(SerializationHelper.DataContractSerialize(basket));
+            //}
         }
     }
 }

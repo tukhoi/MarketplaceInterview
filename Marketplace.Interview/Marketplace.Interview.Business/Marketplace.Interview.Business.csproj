@@ -62,6 +62,9 @@
     <Compile Include="Core\IWorkflow.cs" />
     <Compile Include="Core\ObjectFactory.cs" />
     <Compile Include="Core\SerializationHelper.cs" />
+    <Compile Include="Core\UnitOfWork\BasketUnitOfWork.cs" />
+    <Compile Include="Core\UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="Core\UnitOfWork\UnitOfWorkFactory.cs" />
     <Compile Include="IEnumerableExtensions.cs" />
     <Compile Include="Basket\IShippingCalculator.cs" />
     <Compile Include="Basket\RemoveFromBasketCommand.cs" />

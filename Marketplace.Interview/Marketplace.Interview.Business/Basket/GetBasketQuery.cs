@@ -1,3 +1,4 @@
+using Marketplace.Interview.Business.Core.UnitOfWork;
 using System.Web;
 using System.Xml.Linq;
 
@@ -7,7 +8,7 @@ namespace Marketplace.Interview.Business.Basket
     {
         private readonly IShippingCalculator _shippingCalculator;
 
-        public GetBasketQuery()
+        public GetBasketQuery(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
             _shippingCalculator = new ShippingCalculator();
         }
